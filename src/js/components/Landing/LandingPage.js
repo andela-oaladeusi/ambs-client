@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { home } from '../actions/HomeActions';
+import { home } from '../../actions/HomeActions';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
+import '../../../styles/index.css';
 
-class Home extends Component {
+
+class LandingPage extends Component {
 
 	componentDidMount() {
     this.props.home()
@@ -12,8 +17,9 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-				<div> Welcome Again!! </div>
-				<div>{this.props.data}</div>
+				<Header />
+				<Main message={this.props.data}/>
+				<Footer />
 			</div>
 	);
 	}
@@ -31,4 +37,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
