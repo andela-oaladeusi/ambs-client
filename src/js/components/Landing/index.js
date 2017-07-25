@@ -11,8 +11,13 @@ import '../../../styles/index.css';
 class LandingPage extends Component {
 
 	componentDidMount() {
-    this.props.home()
+		const code = this.props.location.query.code;
+    if (!!code) {
+      this.props.home(code)
+    }
   }
+
+	componentWillReceiveProps
 
 	render() {
 		return (

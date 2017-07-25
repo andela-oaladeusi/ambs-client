@@ -1,3 +1,4 @@
+/*global auth2*/
 import React, { Component } from 'react';
 import UserLoginPage from '../auth/login';
 

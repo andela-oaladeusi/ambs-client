@@ -52,12 +52,3 @@ class LoginForm extends Component {
 }
 
 export default LoginForm;
-
-        // <div class="input-field col s12">
-        //   <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-        //   <label for="disabled">Disabled</label>
-        // </div>
-
-// http://api-prod.andela.com/login?redirect_url=http://allocations.andela.com
-
-// http://api-staging.andela.com/login?redirect_url=http://api-staging.andela.com/api/v1/teams

@@ -8,9 +8,19 @@ class Actions {
   }
 }
 
-export const home = () => (dispatch) => {
-  HomeApi.getAll()
+export const home = (code) => (dispatch) => {
+  HomeApi.getAll(code)
      .then((res) => {
+       console.log('FACEBOOK', res.data);
+       dispatch(Actions.setHome(res.data));
+     })
+    .catch(error => dispatch(error));
+};
+
+export const google = (code) => (dispatch) => {
+  HomeApi.getGoogle(code)
+     .then((res) => {
+       console.log('GOOGLE', res.data);
        dispatch(Actions.setHome(res.data));
      })
     .catch(error => dispatch(error));
