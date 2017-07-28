@@ -1,6 +1,4 @@
-/*global auth2*/
 import React, { Component } from 'react';
-import UserLoginPage from '../auth/login';
 
 class Main extends Component {
   render() {
@@ -12,8 +10,7 @@ class Main extends Component {
             <h5 className="header col s12 light">Manage and listen to your favourites songs</h5>
           </div>
           <div className="row center">
-            <p>Get Started</p>
-            <UserLoginPage />
+            <p>Getting Started</p>
           </div>
         </div>
       </main>

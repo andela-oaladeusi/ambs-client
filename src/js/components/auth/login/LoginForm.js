@@ -1,49 +1,56 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import TextFieldGroup from '../../commons/TextFieldGroup';
+import { userLogin } from '../../../actions/AuthActions';
 
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      LoginEmailOrUsername: '',
-      LoginPassword: ''
+      identity: '',
+      password: '',
+      loading: false
     }
   }
 
   onChange(e) {
+    e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.state);
   }
   onSubmit(e) {
-    console.log(this.state)
+    e.preventDefault();
+    this.props.userLogin(this.state);
+    this.setState({ loading: false })
   }
   render() {
     return (
-      <form onSubmit={(e) => this.onSubmit(e)} className="col s12">
-        <div className="row">
+      <form onSubmit={(e) => this.onSubmit(e)} className="col s12 center" method="POST">
+        <div className="row center">
           <TextFieldGroup
             id="LoginEmailOrUsername"
-            field="LoginEmailOrUsername"
-            value={this.state.LoginEmailOrUsername}
+            field="identity"
+            value={this.state.identity}
             type='text'
             label="Username Or Email"
             placeholder="Email or Username"
             onChange={(e) => this.onChange(e)}
+            icon="perm_identity"
           />
-        </div>
-        <div className="row">
           <TextFieldGroup
             id="LoginPassword"
-            field="LoginPassword"
+            field="password"
             value={this.state.LoginPassword}
             type="password"
             label="Password"
             placeholder="Password here"
             onChange={(e) => this.onChange(e)}
+            icon="lock"
           />
         </div>
-        <button className="btn waves-effect waves-light" name="action">Login
+        <button className="btn waves-effect waves-light" type="submit" name="action" disabled={this.state.loading}>Login
           <i className="material-icons right">send</i>
         </button>
       </form>
@@ -51,4 +58,16 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+// const mapStateToProps = (state, ownProps) => {
+//   return {
+//     data: state.Home.message
+//   }
+// }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    userLogin: bindActionCreators(userLogin, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(LoginForm);

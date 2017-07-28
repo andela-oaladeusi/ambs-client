@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { home } from '../../actions/HomeActions';
-import Header from './Header';
 import Main from './Main';
-import Footer from './Footer';
 import '../../../styles/index.css';
 
 
@@ -17,16 +15,12 @@ class LandingPage extends Component {
     }
   }
 
-	componentWillReceiveProps
-
 	render() {
 		return (
 			<div>
-				<Header />
 				<Main message={this.props.data}/>
-				<Footer />
 			</div>
-	);
+	  );
 	}
 }
 

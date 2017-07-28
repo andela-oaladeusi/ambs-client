@@ -1,22 +1,32 @@
+/*global auth2*/
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import LoginForm from './LoginForm';
+import SignUpForm from './SignUpForm';
 import { google } from '../../../actions/HomeActions';
 import '../../../../styles/index.css';
-import FacebokButton from '../../commons/FacebookButton';
+import FacebookButton from '../../commons/FacebookButton';
 import GoogleButton from '../../commons/GoogleButton';
 
-class UserLoginPage extends Component {
+class SignUpPage extends Component {
+
+  onClick(e) {
+    const _this = this;
+    auth2.grantOfflineAccess().then((authResult) => {
+      if (authResult['code']) {
+        _this.props.google(authResult['code']);
+      }
+    });
+  }
 
   render() {
     return (
       <div className="container center">
         <h4 className="header col s12 light">Manage and listen to your favourites songs</h4>
-        <h5>Getting Started</h5>
-        <br/><br/>
-        <div className="row center">
-          <LoginForm />
+        <h5>Register to get started</h5>
+        <br/> <br/>
+        <div className="row">
+          <SignUpForm />
         </div>
         OR
         <div className="row">
@@ -24,7 +34,7 @@ class UserLoginPage extends Component {
           
           </div>
           <div className="col s3">
-            <FacebokButton />
+            <FacebookButton />
           </div>
           <div className="col s3">
             <GoogleButton />
@@ -44,4 +54,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(UserLoginPage);
+export default connect(null, mapDispatchToProps)(SignUpPage);

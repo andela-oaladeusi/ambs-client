@@ -5,8 +5,10 @@
   "dependencies": {
     "axios": "^0.16.2",
     "materialize-css": "^0.100.1",
+    "materialize-social": "^1.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-form-validate": "^1.0.3",
     "react-redux": "^5.0.5",
     "react-router": "^3.0.2",
     "react-router-redux": "next",
