@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { home } from '../../actions/HomeActions';
+import { facebookUserLogin } from '../../actions/AuthActions';
 import Main from './Main';
 import '../../../styles/index.css';
 
@@ -11,7 +11,7 @@ class LandingPage extends Component {
 	componentDidMount() {
 		const code = this.props.location.query.code;
     if (!!code) {
-      this.props.home(code)
+      this.props.facebookUserLogin(code)
     }
   }
 
@@ -24,16 +24,16 @@ class LandingPage extends Component {
 	}
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    data: state.Home.message
-  }
-}
+// const mapStateToProps = (state, ownProps) => {
+//   return {
+//     data: state.Home.message
+//   }
+// }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    home: bindActionCreators(home, dispatch)
+    facebookUserLogin: bindActionCreators(facebookUserLogin, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
+export default connect(null, mapDispatchToProps)(LandingPage);

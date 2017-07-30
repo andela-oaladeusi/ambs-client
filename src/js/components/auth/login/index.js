@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import LoginForm from './LoginForm';
-import { google } from '../../../actions/HomeActions';
 import '../../../../styles/index.css';
 import FacebokButton from '../../commons/FacebookButton';
 import GoogleButton from '../../commons/GoogleButton';
@@ -38,10 +35,4 @@ class UserLoginPage extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    google: bindActionCreators(google, dispatch)
-  }
-}
-
-export default connect(null, mapDispatchToProps)(UserLoginPage);
+export default UserLoginPage;

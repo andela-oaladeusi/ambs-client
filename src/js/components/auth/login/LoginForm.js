@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TextFieldGroup from '../../commons/TextFieldGroup';
-import { userLogin } from '../../../actions/AuthActions';
+import { normalUserLogin, confirmAccount } from '../../../actions/AuthActions';
 
 
 class LoginForm extends Component {
@@ -18,12 +18,16 @@ class LoginForm extends Component {
   onChange(e) {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
   }
   onSubmit(e) {
     e.preventDefault();
-    this.props.userLogin(this.state);
-    this.setState({ loading: false })
+    if (this.props.confirmationToken) {
+      const token = this.props.confirmationToken;
+      this.props.confirmAccount(this.state, token);
+    } else {
+      this.props.normalUserLogin(this.state);
+      this.setState({ loading: false })
+    }
   }
   render() {
     return (
@@ -58,15 +62,10 @@ class LoginForm extends Component {
   }
 }
 
-// const mapStateToProps = (state, ownProps) => {
-//   return {
-//     data: state.Home.message
-//   }
-// }
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    userLogin: bindActionCreators(userLogin, dispatch)
+    normalUserLogin: bindActionCreators(normalUserLogin, dispatch),
+    confirmAccount: bindActionCreators(confirmAccount, dispatch),
   }
 }
 

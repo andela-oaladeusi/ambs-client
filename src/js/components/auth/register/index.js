@@ -1,23 +1,10 @@
-/*global auth2*/
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import SignUpForm from './SignUpForm';
-import { google } from '../../../actions/HomeActions';
 import '../../../../styles/index.css';
 import FacebookButton from '../../commons/FacebookButton';
 import GoogleButton from '../../commons/GoogleButton';
 
 class SignUpPage extends Component {
-
-  onClick(e) {
-    const _this = this;
-    auth2.grantOfflineAccess().then((authResult) => {
-      if (authResult['code']) {
-        _this.props.google(authResult['code']);
-      }
-    });
-  }
 
   render() {
     return (
@@ -26,7 +13,7 @@ class SignUpPage extends Component {
         <h5>Register to get started</h5>
         <br/> <br/>
         <div className="row">
-          <SignUpForm />
+          <SignUpForm dat="hello"/>
         </div>
         OR
         <div className="row">
@@ -48,10 +35,4 @@ class SignUpPage extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    google: bindActionCreators(google, dispatch)
-  }
-}
-
-export default connect(null, mapDispatchToProps)(SignUpPage);
+export default SignUpPage;

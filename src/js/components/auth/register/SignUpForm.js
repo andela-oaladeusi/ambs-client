@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { userRegistration } from '../../../actions/AuthActions';
 import TextFieldGroup from '../../commons/TextFieldGroup';
 
 
@@ -16,12 +19,11 @@ class SignUpForm extends Component {
   onChange(e) {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
   }
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    this.props.userRegistration(this.state);
   }
 
   render() {
@@ -79,20 +81,10 @@ class SignUpForm extends Component {
   }
 }
 
-export default SignUpForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    userRegistration: bindActionCreators(userRegistration, dispatch)
+  }
+}
 
-
-
-
-// <div class="row">
-//         <div class="input-field col s6">
-//           <i class="material-icons prefix">account_circle</i>
-//           <input id="icon_prefix" type="text" class="validate">
-//           <label for="icon_prefix">First Name</label>
-//         </div>
-//         <div class="input-field col s6">
-//           <i class="material-icons prefix">phone</i>
-//           <input id="icon_telephone" type="tel" class="validate">
-//           <label for="icon_telephone">Telephone</label>
-//         </div>
-//       </div>
+export default connect(null, mapDispatchToProps)(SignUpForm);

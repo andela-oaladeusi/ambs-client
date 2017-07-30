@@ -9,9 +9,6 @@ class Main extends Component {
           <div className="row center">
             <h5 className="header col s12 light">Manage and listen to your favourites songs</h5>
           </div>
-          <div className="row center">
-            <p>Getting Started</p>
-          </div>
         </div>
       </main>
     )
